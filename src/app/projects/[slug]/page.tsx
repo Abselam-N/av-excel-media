@@ -1,0 +1,101 @@
+import { notFound } from "next/navigation";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import { projectsData } from "@/content/projects";
+import { PageHeader } from "@/components/ui/PageHeader";
+
+export async function generateStaticParams() {
+  return Object.keys(projectsData).map((slug) => ({ slug }));
+}
+
+export default function ProjectDetailPage({ params }: { params: { slug: string } }) {
+  const project = projectsData[params.slug];
+  if (!project) notFound();
+
+  const facts = [
+    ["Date", project.date],
+    ["Venue", project.venue],
+    ["Location", project.location],
+  ];
+
+  return (
+    <>
+      <PageHeader eyebrow={`${project.category} \u00b7 ${project.year}`} title={project.title} lead={project.shortDescription} />
+      <div className="wrap space-y-20 pb-24">
+        <dl className="grid gap-6 border-y border-border py-6 sm:grid-cols-3">
+          {facts.map(([k, v]) => (
+            <div key={k}>
+              <dt className="meta">{k}</dt>
+              <dd className="mt-1 font-medium">{v}</dd>
+            </div>
+          ))}
+        </dl>
+
+        <div className="grid gap-12 md:grid-cols-12">
+          <section className="md:col-span-7">
+            <h2 className="t-h3 mb-6">Execution</h2>
+            <div className="max-w-[62ch] space-y-4 text-muted-foreground">
+              {project.fullCaseStudy.map((para, i) => (
+                <p key={i}>{para}</p>
+              ))}
+            </div>
+          </section>
+          <div className="space-y-10 md:col-span-4 md:col-start-9">
+            <section>
+              <h2 className="t-h3 mb-4">Services provided</h2>
+              <ul className="border-b border-border">
+                {project.servicesProvided.map((s) => (
+                  <li key={s} className="border-t border-border py-3 text-sm">{s}</li>
+                ))}
+              </ul>
+            </section>
+            <section>
+              <h2 className="t-h3 mb-4">Highlights</h2>
+              <ul className="border-b border-border">
+                {project.keyHighlights.map((h) => (
+                  <li key={h} className="border-t border-border py-3 text-sm text-muted-foreground">{h}</li>
+                ))}
+              </ul>
+            </section>
+          </div>
+        </div>
+
+        {project.video && (
+          <section aria-label="Project video">
+            <h2 className="t-h3 mb-6">Watch the project</h2>
+            <div className="relative aspect-video overflow-hidden rounded-sm bg-black">
+              <iframe
+                src={project.video.provider === "youtube" ? `https://www.youtube-nocookie.com/embed/${project.video.id}` : `https://player.vimeo.com/video/${project.video.id}`}
+                title={project.video.title}
+                className="absolute inset-0 h-full w-full"
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+              />
+            </div>
+          </section>
+        )}
+
+        <section>
+          <h2 className="t-h3 mb-6">Gallery</h2>
+          <div className="grid gap-6 sm:grid-cols-2">
+            {(project.galleryImages?.length ? project.galleryImages.map((src, i) => ({src,caption:`${project.title} — photo ${i+1}`})) : []).map((g, i) => (
+              <figure key={i}>
+                <div className="media aspect-[4/3]">
+                  <img src={g.src} alt={g.caption} loading="lazy" className="h-full w-full object-cover" />
+                </div>
+                <figcaption className="meta mt-3">{g.caption}</figcaption>
+              </figure>
+            ))}
+          </div>
+        </section>
+
+        <div className="flex flex-wrap items-center gap-x-8 gap-y-4">
+          <Link href="/contact" className="btn btn-primary">Request something similar</Link>
+          <Link href="/projects" className="link-arrow">All projects <ArrowRight className="h-4 w-4" /></Link>
+        </div>
+      </div>
+    </>
+  );
+}
