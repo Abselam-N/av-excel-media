@@ -16,13 +16,34 @@ const escapeHtml = (value: string) => value.replace(/[&<>"']/g, (char) => ({
   "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;",
 }[char] || char));
 
-export async function POST(request: Request) {
-  const ip = request.headers.get("x-real-ip") || request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
+  export async function POST(request: Request) {
+  const ip =
+    request.headers.get("x-real-ip") ||
+    request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+    "unknown";
+
   const now = Date.now();
-for (const [key, item] of limits)  const existing = limits.get(ip);
-  const limit = existing && existing.reset > now ? existing : { count: 0, reset: now + WINDOW_MS };
+
+  if (limits.size > 2000) {
+    limits.forEach((item, key) => {
+      if (item.reset < now) {
+        limits.delete(key);
+      }
+    });
+  }
+
+  const existing = limits.get(ip);
+
+  const limit =
+    existing && existing.reset > now
+      ? existing
+      : { count: 0, reset: now + WINDOW_MS };
+
   limit.count++;
+
   limits.set(ip, limit);
+
+  // Keep the rest of your existing POST function below this line.
   if (limit.count > MAX_REQUESTS) return NextResponse.json({ success: false, message: "Too many requests. Please try again in 15 minutes or contact us directly." }, { status: 429 });
 
   let input: unknown;
