@@ -1,4 +1,5 @@
-import { profileMedia } from "@/content/profileMedia";
+import Image from "next/image";
+import { equipmentMedia } from "@/content/equipmentMedia";
 import { equipmentData } from "@/content/equipment";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { Expandable } from "@/components/ui/Expandable";
@@ -14,7 +15,7 @@ export default function EquipmentPage() {
         lead="Cameras, switchers, wireless links, lighting, and workstations for live and recorded production."
       />
       <div className="wrap space-y-16 pb-24">
-        {equipmentData.map((category, index) => (
+        {equipmentData.map((category) => (
           <section key={category.title} className="grid gap-6 md:grid-cols-12">
             <div className="md:col-span-4">
               <h2 className="t-h2">{category.title}</h2>
@@ -22,9 +23,9 @@ export default function EquipmentPage() {
             </div>
             <div className="border-b border-border md:col-span-8">
               <div className="grid grid-cols-3 gap-3 pb-6 sm:grid-cols-4" aria-label={`${category.title} equipment photographs`}>
-                {(profileMedia[23 + index] || []).map((src, photoIndex) => (
-                  <div key={src} className="group flex aspect-[4/3] items-center justify-center overflow-hidden rounded-md">
-                    <img src={src} alt={`${category.title} equipment photograph ${photoIndex + 1}`} loading="lazy" className="h-full w-full object-contain transition-transform duration-300 group-hover:scale-110" />
+                {(equipmentMedia[category.title] || []).map((src) => (
+                  <div key={src} className="group relative flex aspect-[4/3] items-center justify-center overflow-hidden rounded-md">
+                    <Image src={src} alt="" fill sizes="(max-width: 640px) 33vw, 20vw" className="object-contain transition-transform duration-300 group-hover:scale-110" />
                   </div>
                 ))}
               </div>

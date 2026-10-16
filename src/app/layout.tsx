@@ -20,12 +20,14 @@ const display = Montserrat({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://www.avexcel.net"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://avexcel.net"),
   title: {
     default: `${siteConfig.name} | ${siteConfig.tagline}`,
     template: `%s | ${siteConfig.shortName}`,
   },
   description: siteConfig.description,
+  openGraph: { type: "website", siteName: siteConfig.name, title: siteConfig.name, description: siteConfig.description, url: "https://avexcel.net", images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "AV Excel Media & Communication" }] },
+  twitter: { card: "summary_large_image", images: ["/og-image.png"] },
 };
 
 export default function RootLayout({

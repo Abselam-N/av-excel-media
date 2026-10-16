@@ -13,11 +13,11 @@ export default function ServicesPage() {
     <>
       <PageHeader
         eyebrow="Services"
-        title="Five service areas, one team."
-        lead="Four core departments plus digital marketing and content creation, delivered from planning to final file."
+        title="Event technology and creative services, one team."
+        lead="Audiovisual solutions, LED screen rentals, production and creative services—from planning through delivery."
       />
       <div className="wrap pb-24">
-        <div className="border-b border-border services-hover-list">
+        <div className="border-b border-border services-hover-list creative-services-page-list">
           {list.map((s, i) => (
             <Expandable
               key={s.slug}

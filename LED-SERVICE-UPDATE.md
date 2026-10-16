@@ -1,0 +1,1 @@
+Added /services/led-screen-rental with user-provided content, responsive specifications table, packages, process, and contact CTA. Added service to servicesData and updated services page heading. No new photos or client examples invented. Technical specs and package inclusions reflect supplied copy and should be confirmed by AV Excel before publishing.

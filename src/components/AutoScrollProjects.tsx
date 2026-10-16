@@ -2,46 +2,59 @@
 
 import { useEffect, useRef, type ReactNode } from "react";
 
+/** Slowly pans through the real project cards, reversing at either end. */
 export function AutoScrollProjects({ children }: { children: ReactNode }) {
   const track = useRef<HTMLDivElement>(null);
-  const paused = useRef(false);
+  const pausedUntil = useRef(0);
+  const hovered = useRef(false);
+  const focused = useRef(false);
+  const touching = useRef(false);
 
   useEffect(() => {
     const el = track.current;
     if (!el) return;
-    const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
     let frame = 0;
     let last = 0;
     let direction = 1;
-    const animate = (time: number) => {
-      if (last === 0) last = time;
-      const elapsed = Math.min(time - last, 64);
-      last = time;
-      const max = el.scrollWidth - el.clientWidth;
-      if (!paused.current && !preference.matches && max > 0) {
-        const next = el.scrollLeft + direction * (elapsed / 1000) * 25;
+    const animate = (now: number) => {
+      const delta = last ? Math.min(now - last, 64) : 0;
+      last = now;
+      const max = Math.max(0, el.scrollWidth - el.clientWidth);
+      if (document.visibilityState === "visible" && !motion.matches && !hovered.current && !focused.current && !touching.current && now >= pausedUntil.current && max > 1) {
+        // 30px/s is gentle enough for project titles to remain readable.
+        const next = el.scrollLeft + direction * delta * 0.03;
         if (next >= max) { el.scrollLeft = max; direction = -1; }
         else if (next <= 0) { el.scrollLeft = 0; direction = 1; }
         else el.scrollLeft = next;
       }
-      frame = requestAnimationFrame(animate);
+      frame = window.requestAnimationFrame(animate);
     };
-    frame = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(frame);
+    frame = window.requestAnimationFrame(animate);
+    return () => window.cancelAnimationFrame(frame);
   }, []);
+
+  const hold = () => { pausedUntil.current = performance.now() + 3000; };
 
   return (
     <div
       ref={track}
       className="creative-project-strip creative-project-strip-auto"
-      aria-label="Selected projects, horizontally scrollable"
-      onMouseEnter={() => { paused.current = true; }}
-      onMouseLeave={() => { paused.current = false; }}
-      onTouchStart={() => { paused.current = true; }}
-      onTouchEnd={() => { paused.current = false; }}
-      onFocusCapture={() => { paused.current = true; }}
+      role="region"
+      aria-label="Selected projects — automatically scrolling gallery; swipe or scroll to browse"
+      onMouseEnter={() => { hovered.current = true; }}
+      onMouseLeave={() => { hovered.current = false; hold(); }}
+      onTouchStart={() => { touching.current = true; }}
+      onTouchEnd={() => { touching.current = false; hold(); }}
+      onTouchCancel={() => { touching.current = false; hold(); }}
+      onWheel={hold}
+      onPointerDown={hold}
+      onFocusCapture={() => { focused.current = true; }}
       onBlurCapture={(event) => {
-        if (!event.currentTarget.contains(event.relatedTarget as Node | null)) paused.current = false;
+        if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
+          focused.current = false;
+          hold();
+        }
       }}
     >
       {children}

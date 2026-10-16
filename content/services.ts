@@ -13,6 +13,20 @@ export interface ServicePillar {
 }
 
 export const servicesData: Record<string, ServicePillar> = {
+  "led-screen-rental": {
+    slug: "led-screen-rental",
+    title: "LED Screen Rental & Stage Display Solutions",
+    shortDescription: "Indoor and outdoor LED display rentals, stage backdrops, IMAG screens, and technical show support.",
+    heroSummary: "Transform your next event with broadcast-grade visual impact. AV Excel delivers end-to-end LED display rentals tailored for corporate conferences, exhibitions, concerts, gala dinners, and hybrid summits. From high-resolution indoor panels to weatherproof outdoor walls, we provide seamless video hardware backed by complete on-site engineering.",
+    whatIsIncluded: [
+      { title: "Ultra-Fine Pixel Pitch", description: "High-density LED panels designed for crisp text, presentations, and live image magnification (IMAG) without visible moiré or pixelation on camera." },
+      { title: "Turnkey Engineering", description: "Full delivery, structural truss rigging, ground support systems, power distribution, and on-site signal switching handled by experienced broadcast technicians." },
+      { title: "Seamless Multi-Input Control", description: "Compatible with complex switcher inputs, SDI/HDMI feeds, media servers, and live video feeds with ultra-low latency." },
+      { title: "Custom Aspect Ratios & Curved Formats", description: "Flexible panel configurations to build ultra-wide backdrops, split-screen stage walls, or custom multi-display stage layouts." },
+    ],
+    typicalUseCases: ["Corporate conferences and keynote presentations", "Hybrid conferences and live-streamed symposiums", "Concerts, festivals and outdoor screenings", "Exhibitions, gala dinners and product launches"],
+    relatedProjectSlugs: [],
+  },
   "event-technology": {
     slug: "event-technology",
     title: "Event Technology",

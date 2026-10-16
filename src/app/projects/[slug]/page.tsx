@@ -1,8 +1,17 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { projectsData } from "@/content/projects";
 import { PageHeader } from "@/components/ui/PageHeader";
+
+export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
+  const item = projectsData[params.slug];
+  if (!item) return { title: "Not found" };
+  const description = item.shortDescription;
+  return { title: item.title, description, alternates: { canonical: "/projects/" + item.slug }, openGraph: { title: item.title + " | AV Excel", description, url: "/projects/" + item.slug, type: "website" } };
+}
 
 export async function generateStaticParams() {
   return Object.keys(projectsData).map((slug) => ({ slug }));
@@ -77,19 +86,19 @@ export default function ProjectDetailPage({ params }: { params: { slug: string }
           </section>
         )}
 
-        <section>
+        {!!project.galleryImages?.length && <section>
           <h2 className="t-h3 mb-6">Gallery</h2>
           <div className="grid gap-6 sm:grid-cols-2">
-            {(project.galleryImages?.length ? project.galleryImages.map((src, i) => ({src,caption:`${project.title} — photo ${i+1}`})) : []).map((g, i) => (
+            {project.galleryImages.map((src, i) => (
               <figure key={i}>
                 <div className="media aspect-[4/3]">
-                  <img src={g.src} alt={g.caption} loading="lazy" className="h-full w-full object-cover" />
+                  <Image src={src} alt="" fill sizes="(max-width: 640px) 100vw, 50vw" className="object-cover" />
                 </div>
-                <figcaption className="meta mt-3">{g.caption}</figcaption>
+                
               </figure>
             ))}
           </div>
-        </section>
+        </section>}
 
         <div className="flex flex-wrap items-center gap-x-8 gap-y-4">
           <Link href="/contact" className="btn btn-primary">Request something similar</Link>

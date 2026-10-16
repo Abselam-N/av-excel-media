@@ -1,9 +1,18 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { servicesData } from "@/content/services";
 import { projectsData } from "@/content/projects";
 import { PageHeader } from "@/components/ui/PageHeader";
+import { LedScreenRentalDetail } from "@/components/services/LedScreenRentalDetail";
+
+export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
+  const item = servicesData[params.slug];
+  if (!item) return { title: "Not found" };
+  const description = item.heroSummary;
+  return { title: item.title, description, alternates: { canonical: "/services/" + item.slug }, openGraph: { title: item.title + " | AV Excel", description, url: "/services/" + item.slug, type: "website" } };
+}
 
 export async function generateStaticParams() {
   return Object.keys(servicesData).map((slug) => ({ slug }));
@@ -17,7 +26,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
   return (
     <>
       <PageHeader eyebrow="Services" title={service.title} lead={service.heroSummary} />
-      <div className="wrap space-y-20 pb-24">
+      {service.slug === "led-screen-rental" ? <LedScreenRentalDetail /> : <div className="wrap space-y-20 pb-24">
 
         <section>
           <h2 className="t-h3 mb-6">What is included</h2>
@@ -63,7 +72,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
           <Link href="/contact" className="btn btn-primary">Request a quote</Link>
           <Link href="/services" className="link-arrow">All services <ArrowRight className="h-4 w-4" /></Link>
         </div>
-      </div>
+      </div>}
     </>
   );
 }
