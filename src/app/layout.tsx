@@ -20,8 +20,7 @@ const display = Montserrat({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://avexcel.net"),
-  title: {
+metadataBase: new URL("https://avexcel.net"),  title: {
     default: `${siteConfig.name} | ${siteConfig.tagline}`,
     template: `%s | ${siteConfig.shortName}`,
   },
