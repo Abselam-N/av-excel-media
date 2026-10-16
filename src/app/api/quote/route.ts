@@ -19,8 +19,7 @@ const escapeHtml = (value: string) => value.replace(/[&<>"']/g, (char) => ({
 export async function POST(request: Request) {
   const ip = request.headers.get("x-real-ip") || request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
   const now = Date.now();
-  if (limits.size > 2000) for (const [key, item] of limits) if (item.reset < now) limits.delete(key);
-  const existing = limits.get(ip);
+for (const [key, item] of limits)  const existing = limits.get(ip);
   const limit = existing && existing.reset > now ? existing : { count: 0, reset: now + WINDOW_MS };
   limit.count++;
   limits.set(ip, limit);
