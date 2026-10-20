@@ -75,7 +75,7 @@ const escapeHtml = (value: string) => value.replace(/[&<>"']/g, (char) => ({
   })());
   if (resendApiKey) attempts.push((async () => {
     try {
-      const response = await fetch("https://api.resend.com/emails", { method: "POST", headers: { "Content-Type": "application/json", Authorization: `Bearer ${resendApiKey}` }, body: JSON.stringify({ from: process.env.RESEND_FROM_EMAIL || "AV Excel Quotes <quotes@avexcel.net>", to: ["contact@avexcel.net"], reply_to: data.email, subject: `Quote request: ${data.organization} — ${data.eventType}`, html }), signal: AbortSignal.timeout(10000) });
+      const response = await fetch("https://api.resend.com/emails", { method: "POST", headers: { "Content-Type": "application/json", Authorization: `Bearer ${resendApiKey}` }, body: JSON.stringify({ from: process.env.RESEND_FROM_EMAIL || "AV Excel Quotes <contact@avexcel.net>", to: ["contact@avexcel.net"], reply_to: data.email, subject: `Quote request: ${data.organization} — ${data.eventType}`, html }), signal: AbortSignal.timeout(10000) });
       if (!response.ok) { console.error("Resend quote delivery failed", response.status, (await response.text()).slice(0, 500)); return false; }
       return true;
     } catch (error) { console.error("Resend quote delivery failed", error); return false; }
