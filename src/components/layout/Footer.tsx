@@ -15,7 +15,7 @@ export function Footer() {
       <div className="wrap py-16 md:py-20">
         <div className="grid gap-12 md:grid-cols-12">
           <div className="md:col-span-4">
-            <Image src="/brand/logo.png" alt={siteConfig.name} width={1400} height={253} className="h-9 w-auto" />
+            <Image src="/brand/logo.png" alt={siteConfig.name} width={1400} height={253} sizes="(max-width: 640px) 140px, 180px" className="h-9 w-auto" />
             <p className="mt-6 max-w-[40ch] text-sm leading-relaxed">{siteConfig.description}</p>
           </div>
 

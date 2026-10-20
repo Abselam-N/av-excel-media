@@ -11,9 +11,8 @@ const eventTypes = [
 ];
 
 const availableServices = [
-  "Live streaming", "Multi-camera switching", "LED screens", "Sound system",
-  "Video conferencing/hybrid", "Photography", "Videography", "Event management",
-  "Branding & printing", "AV integration", "Training", "Digital marketing/content creation",
+  "Live streaming & video conferencing", "Hybrid events", "Live camera switching & content management",
+  "LED screen rental", "Videography", "Photography", "Documentary production", "AV integration", "Other",
 ];
 
 function Field({ label, children }: { label: string; children: React.ReactNode }) {

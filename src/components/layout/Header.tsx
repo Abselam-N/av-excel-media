@@ -34,7 +34,7 @@ export function Header() {
   }, [open]);
   return <>
     <header className="creative-header"><div className="wrap flex h-20 items-center justify-between gap-5">
-      <Link href="/" aria-label="AV Excel home" onClick={() => setOpen(false)} tabIndex={open ? -1 : 0}><Image src="/brand/logo-light.png" alt={siteConfig.name} width={1400} height={253} priority className="h-8 w-auto max-w-[180px] object-contain md:h-10" /></Link>
+      <Link href="/" aria-label="AV Excel home" onClick={() => setOpen(false)} tabIndex={open ? -1 : 0}><Image src="/brand/logo-light.png" alt={siteConfig.name} width={1400} height={253} sizes="(max-width: 640px) 140px, 180px" className="h-8 w-auto max-w-[180px] object-contain md:h-10" /></Link>
       <div className="flex items-center gap-5"><Link href="/contact" tabIndex={open ? -1 : 0} className="creative-talk hidden sm:inline-flex">LET'S TALK <ArrowUpRight size={16} /></Link>
         <button ref={menuButton} type="button" className="creative-menu-button" aria-expanded={open} aria-controls="creative-navigation" aria-label={open ? "Close navigation" : "Open navigation"} onClick={() => setOpen(value => !value)}>{open ? <X size={22} /> : <Menu size={22} />}<span className="hidden sm:inline">{open ? "CLOSE" : "MENU"}</span></button>
       </div></div></header>

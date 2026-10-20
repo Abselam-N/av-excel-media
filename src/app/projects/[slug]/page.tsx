@@ -9,8 +9,8 @@ import { PageHeader } from "@/components/ui/PageHeader";
 export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
   const item = projectsData[params.slug];
   if (!item) return { title: "Not found" };
-  const description = item.shortDescription;
-  return { title: item.title, description, alternates: { canonical: "/projects/" + item.slug }, openGraph: { title: item.title + " | AV Excel", description, url: "/projects/" + item.slug, type: "website" } };
+  const description = item.shortDescription.slice(0,155);
+  return { title: item.title, description, alternates: { canonical: "/projects/" + item.slug }, openGraph: { title: item.title + " | AV Excel", description, url: "/projects/" + item.slug, type: "website", images: [item.coverImage || "/og-image.png"] }, twitter: { card: "summary_large_image", title: item.title, description, images: [item.coverImage || "/og-image.png"] } };
 }
 
 export async function generateStaticParams() {
@@ -92,7 +92,7 @@ export default function ProjectDetailPage({ params }: { params: { slug: string }
             {project.galleryImages.map((src, i) => (
               <figure key={i}>
                 <div className="media aspect-[4/3]">
-                  <Image src={src} alt="" fill sizes="(max-width: 640px) 100vw, 50vw" className="object-cover" />
+                  <Image src={src} alt={`${project.title} event photo`} fill sizes="(max-width: 640px) 100vw, 50vw" className="object-cover" />
                 </div>
                 
               </figure>

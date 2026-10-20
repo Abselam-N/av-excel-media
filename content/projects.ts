@@ -3,6 +3,7 @@ export type ProjectCategory = "Live Events" | "Documentaries" | "Content";
 
 export interface ProjectCaseStudy {
   slug: string;
+  lastModified?: string;
   title: string;
   year: string;
   date: string;
@@ -22,6 +23,7 @@ export interface ProjectCaseStudy {
   }[];
 }
 
+// TODO: Add verified lastModified dates to individual projects when their actual edit dates are known.
 export const projectsData: Record<string, ProjectCaseStudy> = {
   "arfsd-12-2026": {
     slug: "arfsd-12-2026",
@@ -125,7 +127,7 @@ export const projectsData: Record<string, ProjectCaseStudy> = {
     venue: "Hilton Hotel",
     location: "Addis Ababa, Ethiopia",
     category: "Live Events",
-    servicesProvided: ["Event organization & management", "LED screen rental", "Content management", "Videography documentation", "Professional photography"],
+    servicesProvided: ["Event audiovisual production", "LED screen rental", "Content management", "Videography documentation", "Professional photography"],
     shortDescription:
       "Helped organize Hope for Justice's learning event at the Hilton Hotel, Addis Ababa, providing LED screens, content management, videography, and photography.",
     fullCaseStudy: [

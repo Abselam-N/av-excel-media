@@ -19,13 +19,22 @@ const display = Montserrat({
   display: "swap",
 });
 
+// TODO: Replace with real Google Search Console and Bing Webmaster Tools verification tokens.
+const googleVerification = "TODO";
+const bingVerification = "TODO";
 export const metadata: Metadata = {
-metadataBase: new URL("https://avexcel.net"),  title: {
-    default: `${siteConfig.name} | ${siteConfig.tagline}`,
+  verification: {
+    ...(googleVerification !== "TODO" ? { google: googleVerification } : {}),
+    ...(bingVerification !== "TODO" ? { other: { "msvalidate.01": bingVerification } } : {}),
+  },
+metadataBase: new URL("https://avexcel.net"),
+  title: {
+    default: "Event Technology & Video Production Addis Ababa | AV Excel",
     template: `%s | ${siteConfig.shortName}`,
   },
-  description: siteConfig.description,
-  openGraph: { type: "website", siteName: siteConfig.name, title: siteConfig.name, description: siteConfig.description, url: "https://avexcel.net", images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "AV Excel Media & Communication" }] },
+  description: "AV Excel offers live streaming, hybrid events, LED screen rental, camera switching, videography, photography and documentary production in Addis Ababa.",
+  openGraph: { type: "website", siteName: siteConfig.name, title: siteConfig.name, description: "AV Excel offers live streaming, hybrid events, LED screen rental, camera switching, videography, photography and documentary production in Addis Ababa.",
+  url: "https://avexcel.net", images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "AV Excel Media & Communication" }] },
   twitter: { card: "summary_large_image", images: ["/og-image.png"] },
 };
 

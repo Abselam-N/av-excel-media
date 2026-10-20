@@ -181,7 +181,28 @@ html { color-scheme: dark; }
 .trusted-companies-set { display: flex; flex: 0 0 auto; align-items: center; gap: 64px; padding-right: 64px; }
 .trusted-companies-logo { display: flex; flex: 0 0 180px; width: 180px; height: 116px; align-items: center; justify-content: center; }
 .trusted-companies-logo img { display: block; width: 100%; height: 100%; object-fit: contain; }
-.trusted-companies-window:hover .trusted-companies-track, .trusted-companies-window:focus-within .trusted-companies-track { animation-play-state: paused; }
+.trusted-companies-window:focus-within .trusted-companies-track { animation-play-state: paused; }
 @keyframes trusted-companies-slide { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 @media (max-width: 640px) { .trusted-companies { padding: 56px 0 64px; } .trusted-companies-heading { margin-bottom: 24px; } .trusted-companies-set { gap: 30px; padding-right: 30px; } .trusted-companies-logo { flex-basis: 132px; width: 132px; height: 90px; } .trusted-companies-track { animation-duration: 26s; } }
 @media (prefers-reduced-motion: reduce) { .trusted-companies-track { animation: none; } .trusted-companies-window { overflow-x: auto; } }
+
+/* Requested homepage hero tagline and SEO heading. */
+.creative-hero-title { text-transform: uppercase; margin-bottom: 28px; }
+.creative-hero-h1 {
+  font-size: clamp(15px, 1.9vw, 26px);
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  line-height: 1.5;
+  max-width: 720px;
+  color: #cfcac0;
+  margin: 0 0 50px;
+}
+/* A subtle reduction in homepage service title size only. */
+.creative-services .creative-service-row h3 { font-size: clamp(23px, 3.3vw, 47px); }
+/* Keep trusted company logos moving after hover and focus. */
+.trusted-companies-window:focus-within .trusted-companies-track { animation-play-state: running; }
+.creative-hero-title {
+  font-family: var(--font-display), system-ui, sans-serif;
+  text-wrap: balance;
+}

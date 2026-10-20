@@ -4,7 +4,7 @@ import { servicesData } from "@/content/services";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { Expandable } from "@/components/ui/Expandable";
 
-export const metadata = { title: "Services" };
+export const metadata = { title: "Event Technology & AV Services in Addis Ababa", description: "Live streaming, hybrid events, LED screens, live production, videography and AV integration for conferences and corporate events in Ethiopia.", alternates: { canonical: "/services" }, openGraph: { title: "Event Technology & AV Services in Addis Ababa", description: "Live streaming, LED screens and audiovisual services for events in Ethiopia.", url: "/services" }, twitter: { card: "summary_large_image" as const } };
 
 export default function ServicesPage() {
   const list = Object.values(servicesData);
@@ -13,8 +13,8 @@ export default function ServicesPage() {
     <>
       <PageHeader
         eyebrow="Services"
-        title="Event technology and creative services, one team."
-        lead="Audiovisual solutions, LED screen rentals, production and creative services—from planning through delivery."
+        title="Event Technology & Audiovisual Services in Addis Ababa"
+        lead="Live streaming, LED screen rental, camera switching, videography, photography and AV integration for events and organizations in Ethiopia."
       />
       <div className="wrap pb-24">
         <div className="border-b border-border services-hover-list creative-services-page-list">

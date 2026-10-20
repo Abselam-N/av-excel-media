@@ -1,182 +1,92 @@
 export interface ServicePillar {
-  slug: string;
-  title: string;
-  shortDescription: string;
-  heroSummary: string;
-  whatIsIncluded: {
-    title: string;
-    description: string;
-  }[];
-  typicalUseCases: string[];
-  relatedProjectSlugs: string[];
-  reviewNotice?: string;
+  slug: string; title: string; shortDescription: string; heroSummary: string; quickAnswer: string; lastModified: string;
+  whatIsIncluded: {title: string; description: string}[];
+  typicalUseCases: string[]; relatedProjectSlugs: string[];
+  sections: {title: string; paragraphs: string[]}[];
+  process: {title: string; description: string}[];
+  faqs: {question: string; answer: string}[];
+  seoTitle: string; seoDescription: string; h1: string;
 }
-
+const commonProcess = [
+  {title:"Initial consultation",description:"Discuss the event format, venue, participants, schedule and audiovisual requirements with the AV Excel team."},
+  {title:"Technical planning",description:"Agree on the equipment, signal flow, production roles and delivery requirements appropriate to the project."},
+  {title:"Setup and checks",description:"Install and test the agreed production equipment and coordinate the technical workflow before the event."},
+  {title:"Production and delivery",description:"Operate the agreed services and provide the final deliverables outlined during planning."},
+];
 export const servicesData: Record<string, ServicePillar> = {
+  "live-streaming-video-conferencing": {
+    slug:"live-streaming-video-conferencing",quickAnswer:"AV Excel provides Full HD live streaming, video conferencing and hybrid event production in Addis Ababa, Ethiopia, for conferences, institutional meetings and event organizers.",lastModified:"2026-10-20", title:"Live Streaming & Video Conferencing", seoTitle:"Live Streaming & Video Conferencing in Addis Ababa",seoDescription:"Multi-platform live streaming, Zoom/Teams/Meet facilitation and hybrid event setup with online interpretation for events across Ethiopia.",h1:"Live Streaming, Video Conferencing & Hybrid Events in Addis Ababa",
+    shortDescription:"Full HD live streams, hybrid conferences, video meeting facilitation and multilingual interpretation.",
+    heroSummary:"AV Excel supports live and hybrid events in Addis Ababa and across Ethiopia with multi-platform broadcasting, meeting facilitation and technical production. Our team coordinates cameras, screens, sound and remote participation so the event can serve both in-room and online audiences.",
+    whatIsIncluded:[
+      {title:"Multi-platform live streaming",description:"Simultaneous Full HD delivery to YouTube, Zoom, Facebook and custom RTMP destinations, with full-session recordings supplied to the client."},
+      {title:"Video conferencing facilitation",description:"Equipment and technical operation for Zoom, Microsoft Teams and Google Meet, including waiting rooms, breakout sessions and online interpretation."},
+      {title:"Hybrid event setup",description:"Production for in-room and remote audiences, remote speakers, split-screen layouts and coordination with stage LED displays."},
+      {title:"Sound for live and hybrid events",description:"Speakers and PA systems, mixing, microphones and dedicated technical engineers for indoor and outdoor events."}
+    ],
+    typicalUseCases:["International summits and bilateral conferences","Hybrid AGMs and board meetings","Multilingual NGO consultations","Award ceremonies and product launches"],
+    relatedProjectSlugs:["etex-25","presidential-high-level-breakfast-dialogue","africa-job-creation-forum-3rd","arfsd-12-2026"],
+    sections:[
+      {title:"Live streaming and recording",paragraphs:["For conferences, institutional gatherings and public events, the production workflow brings camera feeds, presentation content and audio into a single live program. The agreed stream can be sent to YouTube, Zoom, Facebook or a custom RTMP destination in Full HD. A recording of the complete session can also be delivered for future sharing and archival use.","Before going live, our technical team coordinates the production inputs and the destination platforms with event organizers. This makes it possible to align the streaming workflow with the program schedule, speaker transitions and presentation materials. For an event with several audiences, the streaming and recording plan is discussed during technical preparation rather than improvised during the session."]},
+      {title:"Video conferencing facilitation",paragraphs:["AV Excel facilitates online and hybrid meetings using Zoom, Microsoft Teams and Google Meet. Support covers the meeting equipment and the operation of technical features, including waiting rooms, breakout sessions and remote-speaker participation. Technical hosts help manage transitions between in-room speakers and online participants.","For multilingual meetings, online interpretation can be incorporated into the event plan. The setup is adapted to the meeting format and the participation requirements, whether the event is a consultation, board meeting, summit or institutional discussion. Organizers can coordinate the meeting platform, audiovisual production and audience experience through one technical workflow."]},
+      {title:"Hybrid Event Setup",paragraphs:["Hybrid events connect people in the room with people joining remotely. AV Excel supports the audiovisual bridge between these groups, including remote speakers, presentation sharing, live camera feeds and split-screen layouts that can show a speaker alongside slides or other content.","For stage-based events, the hybrid program can connect with an LED display so the in-room audience can see remote participants and presentations. The same content can also feed the live stream. This requires coordination between video conferencing, camera switching and the stage display setup. See our dedicated services for LED screen rental and live camera switching to understand the connected production elements."]},
+      {title:"Sound for live and hybrid events",paragraphs:["Clear audio is essential for people in the venue and for those watching remotely. AV Excel provides sound system rental, setup and operation, including speakers, PA installation, microphones and mixing with dedicated engineers. Audio planning considers presenters, panel discussions, remote contributors and the requirements of the live stream."]}
+    ],process:commonProcess,faqs:[
+      {question:"Which platforms can you stream to?",answer:"AV Excel streams to YouTube, Zoom, Facebook and custom RTMP destinations in Full HD."},
+      {question:"Can remote speakers join a conference?",answer:"Yes. Hybrid event setups can include remote speakers and split-screen layouts for presentations and live video."},
+      {question:"Can you support multilingual meetings?",answer:"Online interpretation is part of the video conferencing facilitation offering and can be discussed during event planning."},
+      {question:"Will we receive a recording?",answer:"The service offering includes a full recording delivered to the client as an event file."}
+    ]
+  },
+  "live-camera-switching": {
+    slug:"live-camera-switching",quickAnswer:"AV Excel provides multi-camera live switching, on-screen graphics and content management in Addis Ababa, Ethiopia, for conferences, summits and live events.",lastModified:"2026-10-20",title:"Live Camera Switching & Content Management",seoTitle:"Live Camera Switching & Content Management",seoDescription:"Multi-camera live switching, graphics, lower thirds and on-screen content management for conferences, summits and broadcasts in Addis Ababa.",h1:"Live Camera Switching & Content Management in Addis Ababa",
+    shortDescription:"Multi-camera switching, on-screen graphics, IMAG feeds and coordinated live presentation content.",heroSummary:"AV Excel provides live camera switching and content management for conferences, summits and broadcast-style events in Addis Ababa. The production workflow combines multiple camera angles, presentations and branded on-screen elements into a coherent live program.",
+    whatIsIncluded:[{title:"Multi-camera live switching",description:"Live selection and transitions between camera feeds for speakers, panels and event coverage."},{title:"Live graphics and lower thirds",description:"On-screen names, presentation graphics and branded content integrated into the program feed."},{title:"Content management",description:"Coordination of presentation materials, live video and other event visuals."},{title:"IMAG and display feeds",description:"SDI/HDMI signal inputs and integration with LED walls and live-stream outputs."}],
+    typicalUseCases:["Conference plenary sessions and panels","Summits with multiple speakers","Live-streamed ceremonies and launches","Stage displays with live image magnification"],relatedProjectSlugs:["etex-25","africa-job-creation-forum-3rd"],
+    sections:[{title:"A coordinated multi-camera program",paragraphs:["Live camera switching makes it possible to show the most relevant view at each moment of an event. A conference may move between a keynote speaker, a panel, a wide stage shot and presentation content. AV Excel coordinates those feeds through the live production workflow rather than relying on a single fixed camera.","Camera switching is also connected to the event's wider audiovisual plan. The output may be displayed on an LED wall, used for live image magnification or sent into a streaming workflow. The chosen production approach depends on the room layout, program schedule and type of content being presented."]},{title:"Graphics, lower thirds and content management",paragraphs:["On-screen information helps audiences follow a live program. AV Excel's content management service covers live graphics, lower thirds and branded content that can appear alongside camera feeds and presentations. Speaker names and other event information can be coordinated with the running order.","For events with multiple presentations, visual content needs to be prepared and routed to the appropriate screens. Camera feeds and slides can be integrated using SDI/HDMI inputs and connected to live streams or LED displays. This creates a consistent visual experience for participants in the venue and online."]},{title:"Connected production services",paragraphs:["Camera switching works closely with LED screen rental and hybrid live streaming. The LED system can show live camera images to audiences seated farther from the stage, while the streaming system can deliver the program to remote participants. Planning these elements together supports clear transitions between speakers, graphics and presentations.","Our service pages for LED Screen Rental and Live Streaming & Video Conferencing explain the complementary display and remote-participation workflows. The appropriate technical configuration is confirmed during consultation based on the event's requirements."]}],process:commonProcess,faqs:[{question:"What is live camera switching?",answer:"It is the real-time selection of camera and presentation feeds for a live program."},{question:"Can the switched video appear on an LED wall?",answer:"Yes. AV Excel's production offering includes integration with LED walls and live image magnification."},{question:"Can you add speaker names on screen?",answer:"Yes. Live graphics and lower thirds are included in the content management offering."}]
+  },
   "led-screen-rental": {
-    slug: "led-screen-rental",
-    title: "LED Screen Rental & Stage Display Solutions",
-    shortDescription: "Indoor and outdoor LED display rentals, stage backdrops, IMAG screens, and technical show support.",
-    heroSummary: "Transform your next event with broadcast-grade visual impact. AV Excel delivers end-to-end LED display rentals tailored for corporate conferences, exhibitions, concerts, gala dinners, and hybrid summits. From high-resolution indoor panels to weatherproof outdoor walls, we provide seamless video hardware backed by complete on-site engineering.",
-    whatIsIncluded: [
-      { title: "Ultra-Fine Pixel Pitch", description: "High-density LED panels designed for crisp text, presentations, and live image magnification (IMAG) without visible moiré or pixelation on camera." },
-      { title: "Turnkey Engineering", description: "Full delivery, structural truss rigging, ground support systems, power distribution, and on-site signal switching handled by experienced broadcast technicians." },
-      { title: "Seamless Multi-Input Control", description: "Compatible with complex switcher inputs, SDI/HDMI feeds, media servers, and live video feeds with ultra-low latency." },
-      { title: "Custom Aspect Ratios & Curved Formats", description: "Flexible panel configurations to build ultra-wide backdrops, split-screen stage walls, or custom multi-display stage layouts." },
-    ],
-    typicalUseCases: ["Corporate conferences and keynote presentations", "Hybrid conferences and live-streamed symposiums", "Concerts, festivals and outdoor screenings", "Exhibitions, gala dinners and product launches"],
-    relatedProjectSlugs: [],
+    slug:"led-screen-rental",quickAnswer:"AV Excel rents indoor and outdoor LED screens in Addis Ababa, Ethiopia, with setup and technical operation for conferences, exhibitions and stage events.",lastModified:"2026-10-20",title:"LED Screen Rental",seoTitle:"LED Screen Rental in Addis Ababa, Ethiopia",seoDescription:"Indoor and outdoor LED screen rental in Addis Ababa: P1.9-P4.8 walls, IMAG and stage displays with rigging and on-site engineers.",h1:"LED Screen Rental in Addis Ababa",
+    shortDescription:"Indoor and outdoor LED displays, stage backdrops, IMAG screens and technical show support.",heroSummary:"AV Excel delivers indoor and outdoor LED screen rentals for conferences, exhibitions, concerts, gala dinners and hybrid summits in Addis Ababa and Ethiopia. Our stage display solutions include technical planning, setup, live operation and teardown.",
+    whatIsIncluded:[{title:"Ultra-fine pixel pitch",description:"High-density panels for text, presentations and live image magnification (IMAG)."},{title:"Turnkey engineering",description:"Delivery, structural rigging, ground support, power distribution and on-site signal switching."},{title:"Multi-input control",description:"Video processor and switcher workflows compatible with SDI/HDMI and live feeds."},{title:"Flexible display layouts",description:"Wide backdrops, split-screen walls and custom modular stage arrangements."}],
+    typicalUseCases:["Corporate conferences and keynote presentations","Hybrid conferences and live-streamed symposiums","Concerts, festivals and outdoor screenings","Exhibitions, gala dinners and product launches"],relatedProjectSlugs:[],sections:[],process:commonProcess,faqs:[{question:"Do you offer indoor and outdoor LED screens?",answer:"Yes. AV Excel's LED offering covers indoor presentation screens and outdoor high-brightness displays."},{question:"Can an LED wall show live camera feeds?",answer:"Yes. Our LED screen rental includes IMAG and integration with live camera switching."},{question:"How is the screen configuration chosen?",answer:"The team considers venue size, viewing distance, lighting and power requirements during consultation."}]
   },
-  "event-technology": {
-    slug: "event-technology",
-    title: "Event Technology",
-    shortDescription:
-      "Broadcast-grade multi-platform live streaming, hybrid video conferencing facilitation, LED screen systems, and high-fidelity sound engineering.",
-    heroSummary:
-      "Eliminate technical friction at high-stakes conferences, summits, and national ceremonies with redundant live streaming, hybrid interpretation systems, and crystal-clear sound engineering.",
-    whatIsIncluded: [
-      {
-        title: "Live Streaming & Recording",
-        description:
-          "Simultaneous multi-platform streaming to YouTube, Zoom, Facebook, and custom RTMP destinations in Full HD quality. Every session is fully recorded and delivered to the client as a final file for archiving or sharing.",
-      },
-      {
-        title: "Video Conferencing Facilitation",
-        description:
-          "Full-service video conferencing support across Zoom, Microsoft Teams, and Google Meet covering equipment, operation, hybrid setup, and online interpretation for multilingual events. Technical hosts manage waiting rooms and breakout sessions.",
-      },
-      {
-        title: "LED Screen Rental, Content Management & Multi-Camera Switching",
-        description:
-          "End-to-end visual production from LED screen rental and installation to live multi-camera switching and full content management. Integrates live graphics, lower thirds, and branded content seamlessly.",
-      },
-      {
-        title: "Sound System",
-        description:
-          "Sound system rental, setup, and operation for indoor and outdoor events covering speaker and PA installation, sound mixing, and a full range of microphones with dedicated engineers on hand.",
-      },
-    ],
-    typicalUseCases: [
-      "International Summits & Bilateral Conferences",
-      "Hybrid Corporate AGMs and Board Meetings",
-      "Multilingual NGO Consultations with Live Interpretation",
-      "High-Level Award Ceremonies & Product Launches",
-    ],
-    relatedProjectSlugs: [
-      "etex-25",
-      "presidential-high-level-breakfast-dialogue",
-      "national-police-day-116",
-      "africa-job-creation-forum-3rd",
-    ],
+  "videography-photography-documentary": {
+    slug:"videography-photography-documentary",quickAnswer:"AV Excel provides videography, event photography and documentary production in Addis Ababa, Ethiopia, for organizations, conferences and development programs.",lastModified:"2026-10-20",title:"Videography, Photography & Documentary Production",seoTitle:"Videography, Photography & Documentary Addis Ababa",seoDescription:"Corporate videography, event photography and documentary production in Addis Ababa, with same-day highlight reels and full in-house post-production.",h1:"Videography, Photography & Documentary Production in Addis Ababa",
+    shortDescription:"Corporate video, event photography, documentaries, drone footage and in-house editing.",heroSummary:"AV Excel produces visual stories for organizations, conferences, development programs and cultural events in Addis Ababa and Ethiopia. Services include videography, event photography, documentary research and production, aerial footage and post-production.",
+    whatIsIncluded:[{title:"Videography",description:"Professional event and institutional video coverage, including edited deliverables and raw master files."},{title:"Photography",description:"Event and organizational photography for conferences, summits, NGO gatherings and cultural programs."},{title:"Documentary production",description:"Research, field interviews, cinematic filming, drone footage and in-house post-production."},{title:"Same-day highlight reels",description:"On-site editing and timely event highlight videos for sharing during an event."}],
+    typicalUseCases:["NGO program impact and beneficiary documentation","Agricultural and rural development field studies","Multi-day international summit coverage","Corporate and institutional films"],relatedProjectSlugs:["tov-agricultural-documentary","jdc-door-to-door-health-program","hope-for-justice-learning-event"],
+    sections:[{title:"Videography",paragraphs:["Video production starts with understanding the purpose of the story and the people who will watch it. AV Excel provides videography for conferences, corporate events, institutional programs and community-focused initiatives. AV Excel provides cinematic cameras, field sound recording and professional coverage of live proceedings. This helps organizers document speakers, discussions, activities and important moments in a form that can be shared after the event.","Coverage can be planned around a conference agenda or an organizational narrative. For a multi-day summit, this may mean capturing plenary sessions, interviews and activities across the venue. For an institutional film, the emphasis may be on the people, setting and message. AV Excel's workflow includes edited videos and raw master files, allowing clients to retain the original recorded material as well as the completed production.","Same-day highlight reels are also available from AV Excel. On-site editing can prepare short recaps while an event is still taking place. The format and delivery requirements should be agreed before production so the team can plan the necessary coverage and editing workflow. The objective is clear, usable footage that communicates what happened and why it matters." ]},
+      {title:"Photography",paragraphs:["Professional photography helps organizations document their work, communicate with stakeholders and preserve a visual record of significant events. AV Excel covers corporate conferences, international summits, NGO gatherings and cultural events. Photographic coverage can include keynote presentations, panel discussions, audience participation, event settings and interactions that communicate the atmosphere of a gathering.","Different projects call for different photographic priorities. A conference organizer may need images of speakers, delegates and venue branding for reports and public communication. An NGO gathering may need photographs that illustrate participation, discussion and the broader purpose of the program. The scope is discussed before the event so coverage can follow the agenda and key moments.","AV Excel provides delivery of edited photographs alongside raw master files. This allows clients to use selected images for immediate communication while retaining source material for their archives. Photography can also be coordinated with videography so that both types of coverage support the same event story without losing sight of the program's priorities."]},
+      {title:"Documentary Production",paragraphs:["Documentary work goes beyond recording an event. It involves understanding a subject, identifying the people who can explain it and building a coherent narrative from real experiences. AV Excel produces documentaries about organizational impact, social development, cultural heritage and community stories. The process includes initial research, field interviews, cinematic shooting and in-house post-production.","Field production can involve travel to project locations, interviews with participants and footage that establishes the setting of a story. The production offering includes drone footage and dedicated field sound recording, which can support wider views of a location alongside detailed interviews and activity coverage. The approach depends on the story and the conditions of the shoot.","In post-production, footage and interviews are assembled into a documentary narrative. This stage brings together the visual material, recorded voices and the structure established through research. Examples in AV Excel's project portfolio include agricultural documentary work and community health program storytelling. The purpose is to communicate the client's work clearly while preserving the context of the people and places being documented."]}
+    ],process:commonProcess,faqs:[{question:"Do you cover conferences and NGO events?",answer:"Yes. AV Excel offers videography and photography for conferences, summits, NGO gatherings and cultural events."},{question:"Do you provide raw files?",answer:"AV Excel provides edited deliverables and raw master files."},{question:"Can you produce documentary films?",answer:"Yes. Documentary production includes research, field interviews, cinematic shooting, drone footage and in-house post-production."},{question:"Are same-day highlight reels available?",answer:"Yes. Same-day event highlight reels are part of AV Excel's production services."}]
   },
-  "video-photo-production": {
-    slug: "video-photo-production",
-    title: "Video & Photo Production",
-    shortDescription:
-      "Cinematic documentary production, developmental research storytelling, and rapid-turnaround event photo and video coverage.",
-    heroSummary:
-      "Visual storytelling crafted with broadcast cinema cameras, aerial drone footage, and dedicated field sound recording. We capture the core mission of your organization with cinematic clarity.",
-    whatIsIncluded: [
-      {
-        title: "Documentary Production",
-        description:
-          "Compelling documentaries covering organizational impact, social development, cultural heritage, and community narratives. Handles initial research, field interviews, cinematic shooting, drone footage, and full post-production in-house.",
-      },
-      {
-        title: "Event Photography & Videography",
-        description:
-          "Professional coverage for corporate conferences, summits, NGO gatherings, and cultural events. Delivers edited photos and videos as well as raw master files.",
-      },
-      {
-        title: "Same-Day Highlight Reels",
-        description:
-          "Onsite editing and same-day highlight reels ensuring your content is ready to share while the event is still live.",
-      },
-    ],
-    typicalUseCases: [
-      "NGO Program Impact and Beneficiary Documentation",
-      "Agricultural and Rural Development Field Studies",
-      "Multi-Day International Summit Coverage",
-      "Corporate Milestone and Institutional Legacy Films",
-    ],
-    relatedProjectSlugs: [
-      "tov-agricultural-documentary",
-      "jdc-door-to-door-health-program",
-      "hope-for-justice-learning-event",
-    ],
-  },
-  "event-management-branding": {
-    slug: "event-management-branding",
-    title: "Event Management & Branding",
-    shortDescription:
-      "Full-cycle event planning, vendor sourcing, on-ground logistics coordination, stage design, and comprehensive venue branding.",
-    heroSummary:
-      "From preliminary floorplans to stage cues and branded signage, we manage the intricate operational details so your executive team can focus entirely on attendees.",
-    whatIsIncluded: [
-      {
-        title: "Event Management",
-        description:
-          "Full-cycle event management for conferences, corporate events, and NGO gatherings from initial concept to final execution, covering planning, vendor coordination, and on-ground logistics.",
-      },
-      {
-        title: "Branding & Printing",
-        description:
-          "Branding and print materials from signage and banners to programs and promotional materials so your event looks and feels as professional as it runs.",
-      },
-    ],
-    typicalUseCases: [
-      "Corporate Launches and Strategic Partner Summits",
-      "Civil Society and NGO Multi-Day Workshops",
-      "High-Level Diplomatic Dinners",
-    ],
-    relatedProjectSlugs: [
-      "hope-for-justice-learning-event",
-      "etex-25",
-    ],
-  },
-  "av-integration-training": {
-    slug: "av-integration-training",
-    title: "AV Integration & Training",
-    shortDescription:
-      "Turnkey audiovisual system design, structured cabling, hardware installation, and hands-on technical capacity building.",
-    heroSummary:
-      "Transform executive boardrooms, auditoriums, and community spaces into reliable audiovisual environments with tailored acoustic planning, modern hardware integration, and staff training.",
-    whatIsIncluded: [
-      {
-        title: "AV Integration",
-        description:
-          "Design and installation of tailored audiovisual systems for offices, conference rooms, auditoriums, and public venues. Covers cabling, infrastructure, full equipment installation, and ongoing technical support.",
-      },
-      {
-        title: "Training",
-        description:
-          "Hands-on training for staff, technicians, and organizations on the operation and management of AV systems and media equipment tailored to team skill levels.",
-      },
-    ],
-    typicalUseCases: [
-      "Corporate Boardroom and Hybrid Meeting Room Upgrades",
-      "University and Institutional Auditorium Fit-Outs",
-      "Internal Media Unit Technical Upskilling",
-    ],
-    relatedProjectSlugs: ["etex-25"],
-  },
-  "digital-marketing-content-creation": {
-    slug: "digital-marketing-content-creation",
-    title: "Digital Marketing & Content Creation",
-    shortDescription:
-      "Creative digital content that strengthens brands' online presence, boosts visibility, and builds meaningful audience engagement.",
-    heroSummary:
-      "At AV Excel Media & Communication, we help brands and organizations build a powerful digital presence through compelling, high-quality content. We combine creativity, storytelling, and professional media production to transform ideas into engaging digital experiences that connect with audiences. From promotional videos, social media content, and photography to digital campaigns and branded storytelling, we create content that reflects each client's identity, communicates their message, and strengthens their online visibility. Our goal is to help businesses and organizations stand out in the digital space, build meaningful connections with their audiences, and establish a consistent, professional, and memorable online presence.",
-    whatIsIncluded: [
-      { title: "Social Media Content Production", description: "Engaging short-form videos, reels, interviews, and social-first content tailored to each brand's audience." },
-      { title: "Promotional Videos & Photography", description: "Professional visual storytelling that presents clients, products, services, and campaigns with clarity and impact." },
-      { title: "Branded Digital Campaign Content", description: "Creative campaign visuals, graphics, and multimedia assets designed for consistent communication across digital platforms." },
-    ],
-    typicalUseCases: [
-      "Strengthening Business and Organizational Online Presence",
-      "Social Media Engagement and Brand Awareness",
-      "Promotional and Digital Storytelling Campaigns",
-    ],
-    relatedProjectSlugs: [],
-  },
+  "av-integration": {
+    slug:"av-integration",quickAnswer:"AV Excel designs and installs audiovisual systems in Addis Ababa, Ethiopia, for offices, boardrooms, conference rooms, auditoriums and public venues.",lastModified:"2026-10-20",title:"AV Integration",seoTitle:"AV System Integration in Addis Ababa, Ethiopia",seoDescription:"Turnkey audiovisual system design, structured cabling and installation in Addis Ababa, with hands-on technical training for your team.",h1:"AV System Integration in Addis Ababa",shortDescription:"Audiovisual system design, cabling, installation and hands-on technical training.",heroSummary:"AV Excel designs and installs tailored audiovisual systems for boardrooms, conference rooms, auditoriums and public venues in Addis Ababa. Our service includes cabling, infrastructure, equipment installation, ongoing technical support and staff training.",
+    whatIsIncluded:[{title:"AV system design",description:"Tailored audiovisual system planning for offices, meeting rooms, auditoriums and public spaces."},{title:"Structured cabling",description:"Cabling and audiovisual infrastructure as part of the installation workflow."},{title:"Hardware installation",description:"Installation and integration of AV equipment within the planned system."},{title:"Technical capacity building",description:"Hands-on operation and equipment management training tailored to the team's skill levels."}],
+    typicalUseCases:["Corporate boardroom and hybrid meeting room upgrades","University and institutional auditorium fit-outs","Internal media unit technical training"],relatedProjectSlugs:["etex-25"],
+    sections:[
+      {title:"Planning an audiovisual system",paragraphs:[
+        "A useful audiovisual system begins with the people who will use it. AV Excel plans tailored solutions for offices, corporate boardrooms, conference rooms, auditoriums and public venues in Addis Ababa. During consultation, we discuss how the room is used, who needs to see and hear presentations, and what staff need to manage during meetings or events. These conversations help establish a clear direction for system design before installation begins.",
+        "A boardroom and an auditorium have different requirements. A boardroom may be used for meetings, presentations and remote participation, while an auditorium may need coordinated audio and video across a larger space. We review the intended use of the room and plan how its audiovisual components can work together. The aim is to support everyday operations and the events the space is designed to host.",
+        "AV Excel combines audiovisual system design with infrastructure planning and equipment installation. The technical plan considers the relationship between the room, its presentation requirements and the people operating the equipment. We discuss the scope with the client so the proposed work reflects the space and its practical needs."
+      ]},
+      {title:"Structured cabling and equipment installation",paragraphs:[
+        "AV integration includes structured cabling, audiovisual infrastructure and hardware installation. These elements form the foundation of a coordinated system. AV Excel plans cabling and equipment placement as part of the wider installation workflow, rather than treating each component as an unrelated purchase. A clear installation plan helps the team understand how the equipment will be connected and operated in the completed space.",
+        "For conference rooms and auditoriums, audio, video and presentation equipment need to work as part of one environment. AV Excel approaches installation with that connection in mind. We coordinate the equipment setup with the planned use of the room and discuss the installation stages with the client. The exact configuration is determined through consultation and technical planning for the individual project.",
+        "Installation is not only about placing equipment in a room. It is also about making the resulting setup understandable to the people who will operate it. AV Excel connects the design, cabling and installation stages with technical preparation and training so that the client can plan for use after the installation work is complete."
+      ]},
+      {title:"Technical training and capacity building",paragraphs:[
+        "AV Excel provides hands-on technical training for staff, technicians and organizations using audiovisual equipment. Training is tailored to the team's skill levels and the systems involved. It helps the people responsible for a room become familiar with the equipment and understand the operating workflow needed for meetings, presentations and other activities.",
+        "Different organizations have different technical teams. Some clients have dedicated staff, while others rely on colleagues who manage audiovisual equipment alongside other responsibilities. AV Excel discusses the training audience and their experience before deciding how to structure the sessions. The focus is on practical operation and equipment management, using the system the team needs to work with.",
+        "Technical capacity building can be considered alongside a new installation or when an organization wants to improve how its team uses audiovisual resources. By connecting system planning with training, AV Excel helps clients consider both the equipment and the people who will use it."
+      ]},
+      {title:"Technical support and consultation",paragraphs:[
+        "AV Excel also offers technical support as part of its audiovisual integration services. During consultation, we discuss the type of support the client needs, the room's intended use and the responsibilities of the people operating the equipment. These details help shape the scope of the proposed work and the practical arrangements for the installation.",
+        "If you are planning a boardroom upgrade, an auditorium installation or an institutional audiovisual project, our team can discuss your requirements before preparing a technical approach. Share the location, the type of space and how you intend to use it. We can then review the system design, structured cabling, equipment installation and training requirements together.",
+        "AV Excel serves clients in Addis Ababa and works on audiovisual projects in Ethiopia. Contact the team to discuss your space, its intended use and the support your staff may need. The consultation is an opportunity to align the system plan with the organization's activities before proceeding with installation."
+      ]}
+    ],process:commonProcess,faqs:[{question:"Which spaces can AV Excel equip?",answer:"AV Excel equips offices, conference rooms, auditoriums and public venues."},{question:"Does the service include cabling and installation?",answer:"Yes. AV integration includes infrastructure, structured cabling and equipment installation."},{question:"Can you train our team?",answer:"Yes. Hands-on technical training is included in AV Excel's AV integration service."}]
+  }
 };
+// TODO: Confirm exact equipment brands, installation warranties, maintenance SLAs and opening hours before publishing them.

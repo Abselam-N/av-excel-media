@@ -4,7 +4,7 @@ import { equipmentData } from "@/content/equipment";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { Expandable } from "@/components/ui/Expandable";
 
-export const metadata = { title: "Equipment" };
+export const metadata = { title: "Audiovisual Equipment in Addis Ababa", description: "Explore AV Excel audiovisual equipment for live streaming, video production, LED screen displays and event technology in Addis Ababa.", alternates: { canonical: "/equipment" }, openGraph: { title: "Audiovisual Equipment in Addis Ababa | AV Excel", description: "Explore AV Excel audiovisual equipment for live streaming, video production, LED screen displays and event technology in Addis Ababa.", url: "/equipment", images: ["/og-image.png"] }, twitter: { card: "summary_large_image" as const, title: "Audiovisual Equipment in Addis Ababa", description: "Explore AV Excel audiovisual equipment for live streaming, video production, LED screen displays and event technology in Addis Ababa.", images: ["/og-image.png"] } };
 
 export default function EquipmentPage() {
   return (
@@ -25,7 +25,7 @@ export default function EquipmentPage() {
               <div className="grid grid-cols-3 gap-3 pb-6 sm:grid-cols-4" aria-label={`${category.title} equipment photographs`}>
                 {(equipmentMedia[category.title] || []).map((src) => (
                   <div key={src} className="group relative flex aspect-[4/3] items-center justify-center overflow-hidden rounded-md">
-                    <Image src={src} alt="" fill sizes="(max-width: 640px) 33vw, 20vw" className="object-contain transition-transform duration-300 group-hover:scale-110" />
+                    <Image src={src} alt="AV Excel audiovisual equipment" fill sizes="(max-width: 640px) 33vw, 20vw" className="object-contain transition-transform duration-300 group-hover:scale-110" />
                   </div>
                 ))}
               </div>

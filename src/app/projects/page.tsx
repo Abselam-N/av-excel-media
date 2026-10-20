@@ -1,4 +1,4 @@
 import type { Metadata } from "next";
 import { ProjectsGallery } from "@/components/ProjectsGallery";
-export const metadata: Metadata = { title: "Projects", description: "Explore AV Excel Media & Communication audiovisual productions, conferences, live events and event technology projects in Ethiopia." };
+export const metadata = { title: "Audiovisual Projects in Addis Ababa", description: "Explore AV Excel live event productions, documentary work, conferences and audiovisual projects across Addis Ababa and Ethiopia.", alternates: { canonical: "/projects" }, openGraph: { title: "Audiovisual Projects in Addis Ababa | AV Excel", description: "Explore AV Excel live event productions, documentary work, conferences and audiovisual projects across Addis Ababa and Ethiopia.", url: "/projects", images: ["/og-image.png"] }, twitter: { card: "summary_large_image" as const, title: "Audiovisual Projects in Addis Ababa", description: "Explore AV Excel live event productions, documentary work, conferences and audiovisual projects across Addis Ababa and Ethiopia.", images: ["/og-image.png"] } };
 export default function ProjectsPage() { return <ProjectsGallery />; }

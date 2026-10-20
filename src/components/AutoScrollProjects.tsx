@@ -6,7 +6,6 @@ import { useEffect, useRef, type ReactNode } from "react";
 export function AutoScrollProjects({ children }: { children: ReactNode }) {
   const track = useRef<HTMLDivElement>(null);
   const pausedUntil = useRef(0);
-  const hovered = useRef(false);
   const focused = useRef(false);
   const touching = useRef(false);
 
@@ -21,7 +20,7 @@ export function AutoScrollProjects({ children }: { children: ReactNode }) {
       const delta = last ? Math.min(now - last, 64) : 0;
       last = now;
       const max = Math.max(0, el.scrollWidth - el.clientWidth);
-      if (document.visibilityState === "visible" && !motion.matches && !hovered.current && !focused.current && !touching.current && now >= pausedUntil.current && max > 1) {
+      if (document.visibilityState === "visible" && !motion.matches && !focused.current && !touching.current && now >= pausedUntil.current && max > 1) {
         // 30px/s is gentle enough for project titles to remain readable.
         const next = el.scrollLeft + direction * delta * 0.03;
         if (next >= max) { el.scrollLeft = max; direction = -1; }
@@ -42,8 +41,6 @@ export function AutoScrollProjects({ children }: { children: ReactNode }) {
       className="creative-project-strip creative-project-strip-auto"
       role="region"
       aria-label="Selected projects — automatically scrolling gallery; swipe or scroll to browse"
-      onMouseEnter={() => { hovered.current = true; }}
-      onMouseLeave={() => { hovered.current = false; hold(); }}
       onTouchStart={() => { touching.current = true; }}
       onTouchEnd={() => { touching.current = false; hold(); }}
       onTouchCancel={() => { touching.current = false; hold(); }}
@@ -53,7 +50,6 @@ export function AutoScrollProjects({ children }: { children: ReactNode }) {
       onBlurCapture={(event) => {
         if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
           focused.current = false;
-          hold();
         }
       }}
     >

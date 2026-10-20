@@ -3,7 +3,7 @@ import { siteConfig } from "@/content/settings";
 import { teamMembers } from "@/content/team";
 import { PageHeader } from "@/components/ui/PageHeader";
 
-export const metadata = { title: "About" };
+export const metadata = { title: "About AV Excel Media & Communication in Addis Ababa", description: "Meet the audiovisual professionals behind AV Excel in Addis Ababa, Ethiopia, and learn about our approach to live production and technical services.", alternates: { canonical: "/about" }, openGraph: { title: "About AV Excel Media & Communication in Addis Ababa | AV Excel", description: "Meet the audiovisual professionals behind AV Excel in Addis Ababa, Ethiopia, and learn about our approach to live production and technical services.", url: "/about", images: ["/og-image.png"] }, twitter: { card: "summary_large_image" as const, title: "About AV Excel Media & Communication in Addis Ababa", description: "Meet the audiovisual professionals behind AV Excel in Addis Ababa, Ethiopia, and learn about our approach to live production and technical services.", images: ["/og-image.png"] } };
 
 export default function AboutPage() {
   const values = [
@@ -14,7 +14,7 @@ export default function AboutPage() {
 
   return (
     <>
-      <PageHeader eyebrow="About" title={siteConfig.tagline} lead={siteConfig.description} />
+      <PageHeader eyebrow={siteConfig.tagline} title="About AV Excel Media & Communication" lead={siteConfig.description} />
       <div className="wrap space-y-20 pb-24">
         <p className="max-w-[62ch] text-muted-foreground">
           Our team brings hands-on experience across

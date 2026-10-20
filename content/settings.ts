@@ -8,6 +8,7 @@ export interface SiteConfig {
   vision: string;
   mission: string;
   coreValues: string[];
+  socialLinks: string[];
   contact: {
     email: string;
     phone: string;
@@ -26,12 +27,14 @@ export const siteConfig: SiteConfig = {
   location: "Addis Ababa",
   country: "Ethiopia",
   description:
-    "AV Excel is a premier audiovisual solutions provider based in Addis Ababa, Ethiopia, offering event technology, video and photo production, event management, and branding services. Founded by a team of dynamic young media professionals, we deliver customized solutions tailored to each client, combining creativity, professionalism, and technical expertise.",
+    "AV Excel is a premier audiovisual solutions provider based in Addis Ababa, Ethiopia, offering live streaming, hybrid events, LED screen rental, live production, videography and AV integration.",
   vision:
     "To set the global standard for excellence in audiovisual services, seamlessly integrating innovation, creativity, and flawless execution to transform every experience into a lasting impression.",
   mission:
     "To deliver world-class audiovisual solutions with the highest degree of excellence, ensuring every project achieves its fullest creative and technical potential.",
   coreValues: ["Professionalism", "Creativity", "Solution-focused"],
+  // TODO: Supply verified LinkedIn, YouTube, Facebook and Instagram company profile URLs.
+  socialLinks: [],
   contact: {
     email: "contact@avexcel.net",
     phone: "+251 91 695 7018",

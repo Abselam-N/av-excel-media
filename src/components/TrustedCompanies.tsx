@@ -16,7 +16,7 @@ export function TrustedCompanies() {
         <p className="creative-label">05 / OUR CLIENTS</p>
         <h2 id="trusted-companies-title">COMPANIES THAT <em>TRUSTED US.</em></h2>
       </div>
-      <div className="trusted-companies-window" tabIndex={0} aria-label="Client logos; scrolling pauses while focused">
+      <div className="trusted-companies-window" tabIndex={0} aria-label="Client logos scrolling automatically">
         <div className="trusted-companies-track">
           {[0, 1].map((copy) => (
             <div className="trusted-companies-set" key={copy} aria-hidden={copy === 1 ? true : undefined}>
